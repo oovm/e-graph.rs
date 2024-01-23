@@ -5,9 +5,17 @@
 [node name="RustPlayer" type="RustPlayer" parent="."]
 position = Vector2(368, 231)
 
-[node name="CellAnchor" type="CellAnchor" parent="."]
-
-[node name="background" type="Sprite2D" parent="CellAnchor"]
-position = Vector2(534, 226)
-
 [node name="CellEditor" type="CellEditor" parent="."]
+
+[node name="GridContainer" type="GridContainer" parent="."]
+offset_left = 90.0
+offset_top = 89.0
+offset_right = 219.0
+offset_bottom = 198.0
+tooltip_text = "地图格子"
+columns = 16
+
+[node name="CellAnchor" type="CellAnchor" parent="GridContainer"]
+
+[node name="background" type="Sprite2D" parent="GridContainer/CellAnchor"]
+position = Vector2(534, 226)
