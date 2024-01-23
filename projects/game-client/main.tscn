@@ -1,9 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://ciliatw20tcd7"]
-
-[ext_resource type="Texture2D" uid="uid://dbdik734hxpki" path="res://icon.svg" id="1_1a4an"]
+[gd_scene format=3 uid="uid://ciliatw20tcd7"]
 
 [node name="Node2D" type="Node2D"]
 
 [node name="RustPlayer" type="RustPlayer" parent="."]
-position = Vector2(551, 311)
-texture = ExtResource("1_1a4an")
+position = Vector2(368, 231)
+
+[node name="CellAnchor" type="CellAnchor" parent="."]
+
+[node name="background" type="Sprite2D" parent="CellAnchor"]
+position = Vector2(534, 226)
+
+[node name="CellEditor" type="CellEditor" parent="."]

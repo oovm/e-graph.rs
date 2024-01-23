@@ -4,6 +4,9 @@ use godot::{
     log::godot_print,
     obj::{Base, WithBaseField},
 };
+use godot::builtin::GString;
+use godot::engine::{INode, Node};
+use godot::obj::{Bounds, GodotClass};
 
 #[derive(Debug, GodotClass)]
 #[class(base = Sprite2D)]
@@ -32,8 +35,39 @@ impl ISprite2D for RustPlayer {
     }
 }
 
-#[derive(Clone, Debug, GodotClass)]
-struct RustMonster {
+#[derive(Debug, GodotClass)]
+#[class(base = Node)]
+pub struct CellAnchor {
+    #[base]
+    base: Base<Node>,
+    #[export]
+    bed_rock_layer: GString,
+    #[export]
+    block_layer: GString,
     name: String,
     hit_points: i32,
+}
+
+#[godot_api]
+impl INode for CellAnchor {
+    fn init(base: Base<Self::Base>) -> Self {
+        Self { base, bed_rock_layer: Default::default(), block_layer: Default::default(), name: String::new(), hit_points: 0 }
+    }
+}
+
+
+#[derive(Debug, GodotClass)]
+#[class(base = Node)]
+pub struct CellEditor {
+    #[base]
+    base: Base<Node>,
+    name: String,
+    hit_points: i32,
+}
+
+#[godot_api]
+impl INode for CellEditor {
+    fn init(base: Base<Self::Base>) -> Self {
+        Self { base, name: String::new(), hit_points: 0 }
+    }
 }
