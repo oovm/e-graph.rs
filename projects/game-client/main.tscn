@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://ciliatw20tcd7"]
+[gd_scene load_steps=2 format=3 uid="uid://ciliatw20tcd7"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n6jrk"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -19,3 +21,6 @@ columns = 16
 
 [node name="background" type="Sprite2D" parent="GridContainer/CellAnchor"]
 position = Vector2(534, 226)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_n6jrk")
