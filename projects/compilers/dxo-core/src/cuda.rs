@@ -15,10 +15,12 @@ use titan_types::{AliasContract, AttrMap, AttrValue, DType, Layout, MemoryEffect
 
 use crate::tensor::TensorError;
 
-struct CudaState {
+/// Shared Titan CUDA session retained for DXO ops and optional UCF binding.
+pub(crate) struct CudaState {
     runtime: Mutex<Runtime>,
     device: Device,
-    session: Arc<dyn DeviceSession>,
+    /// Shared Titan CUDA session (UCF path reuses this primary context).
+    pub(crate) session: Arc<dyn DeviceSession>,
 }
 
 static CUDA_STATE: OnceLock<Result<CudaState, String>> = OnceLock::new();
@@ -54,7 +56,7 @@ fn op_request(operator: &str, inputs: Vec<TensorHandle>, output_shape: Vec<usize
     }
 }
 
-fn cuda_state() -> Result<&'static CudaState, TensorError> {
+pub(crate) fn cuda_state() -> Result<&'static CudaState, TensorError> {
     let init = CUDA_STATE.get_or_init(|| {
         let driver = CudaDriver::open().map_err(|e| e.to_string())?;
         let devices = driver.enumerate().map_err(|e| e.to_string())?;

@@ -48,6 +48,12 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "330a5ed07fa54e4702c9d6c4174f74427fc0ef6e214bbd677ae50a5099946470"
 
 [[package]]
+name = "arrayvec"
+version = "0.7.8"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d3fb67a6e08acf24fdeccbac2cb6ac4305825bd1f117462e0e6f2f193345ad56"
+
+[[package]]
 name = "atk"
 version = "0.18.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -310,6 +316,12 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "9330f8b2ff13f34540b44e946ef35111825727b38d33286ef986142615121801"
 
 [[package]]
+name = "cfg_aliases"
+version = "0.2.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "f079e83a288787bcd14a6aea84cee5c87a67c5a3e660c30f557a3d24761b3527"
+
+[[package]]
 name = "chacha20"
 version = "0.10.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -330,6 +342,16 @@ dependencies = [
  "num-traits",
  "serde",
  "windows-link 0.2.1",
+]
+
+[[package]]
+name = "codespan-reporting"
+version = "0.11.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "3538270d33cc669650c4b093848450d380def10c331d38c768e34cac80576e6e"
+dependencies = [
+ "termcolor",
+ "unicode-width",
 ]
 
 [[package]]
@@ -632,7 +654,7 @@ dependencies = [
  "libc",
  "option-ext",
  "redox_users",
- "windows-sys 0.61.2",
+ "windows-sys 0.59.0",
 ]
 
 [[package]]
@@ -755,6 +777,11 @@ dependencies = [
  "titan-runtime",
  "titan-tensor",
  "titan-types",
+ "ucf",
+ "ucf-backend-cuda",
+ "ucf-ir",
+ "ucf-scheduler",
+ "ucf-types",
 ]
 
 [[package]]
@@ -1335,6 +1362,12 @@ name = "hex"
 version = "0.4.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "7f24254aa9a54b5c858eaee2f5bccdb46aaf0e486a595ed5fd8f86ba55232a70"
+
+[[package]]
+name = "hexf-parse"
+version = "0.2.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "dfa686283ad6dd069f105e5ab091b04c62850d3e4cf5d67debad1933f55023df"
 
 [[package]]
 name = "html5ever"
@@ -1964,6 +1997,28 @@ dependencies = [
 ]
 
 [[package]]
+name = "naga"
+version = "24.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "e380993072e52eef724eddfcde0ed013b0c023c3f0417336ed041aa9f076994e"
+dependencies = [
+ "arrayvec",
+ "bit-set",
+ "bitflags 2.13.1",
+ "cfg_aliases",
+ "codespan-reporting",
+ "hexf-parse",
+ "indexmap 2.14.0",
+ "log",
+ "rustc-hash 1.1.0",
+ "spirv",
+ "strum",
+ "termcolor",
+ "thiserror 2.0.20",
+ "unicode-xid",
+]
+
+[[package]]
 name = "napi"
 version = "3.12.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1976,7 +2031,7 @@ dependencies = [
  "napi-build",
  "napi-sys",
  "nohash-hasher",
- "rustc-hash",
+ "rustc-hash 2.1.3",
 ]
 
 [[package]]
@@ -2715,6 +2770,12 @@ dependencies = [
 
 [[package]]
 name = "rustc-hash"
+version = "1.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "08d43f7aa6b08d49f382cde6a7982047c3426db949b1424bc4b7ec9ae12c6ce2"
+
+[[package]]
+name = "rustc-hash"
 version = "2.1.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "6b1e7f9a428571be2dc5bc0505c13fb6bf936822b894ec87abf8a08a4e51742d"
@@ -2814,7 +2875,7 @@ dependencies = [
  "phf",
  "phf_codegen",
  "precomputed-hash",
- "rustc-hash",
+ "rustc-hash 2.1.3",
  "servo_arc",
  "smallvec",
 ]
@@ -3088,6 +3149,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "spirv"
+version = "0.3.0+sdk-1.3.268.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "eda41003dc44290527a59b13432d4a0379379fa074b70174882adfbdfd917844"
+dependencies = [
+ "bitflags 2.13.1",
+]
+
+[[package]]
 name = "stable_deref_trait"
 version = "1.2.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -3122,6 +3192,28 @@ name = "strsim"
 version = "0.11.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "7da8b5736845d9f2fcb837ea5d9e2628564b3b043a70948a3f0b778838c5fb4f"
+
+[[package]]
+name = "strum"
+version = "0.26.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "8fec0f0aef304996cf250b31b5a10dee7980c85da9d759361292b8bca5a18f06"
+dependencies = [
+ "strum_macros",
+]
+
+[[package]]
+name = "strum_macros"
+version = "0.26.4"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "4c6bee85a5a24955dc440386795aa378cd9cf82acd5f764469152d2270e581be"
+dependencies = [
+ "heck 0.5.0",
+ "proc-macro2",
+ "quote",
+ "rustversion",
+ "syn 2.0.119",
+]
 
 [[package]]
 name = "swift-rs"
@@ -3233,7 +3325,7 @@ dependencies = [
  "tao-macros",
  "unicode-segmentation",
  "url",
- "windows",
+ "windows 0.61.3",
  "windows-core 0.61.2",
  "windows-version",
  "x11-dl",
@@ -3304,7 +3396,7 @@ dependencies = [
  "webkit2gtk",
  "webview2-com",
  "window-vibrancy",
- "windows",
+ "windows 0.61.3",
 ]
 
 [[package]]
@@ -3391,7 +3483,7 @@ dependencies = [
  "url",
  "webkit2gtk",
  "webview2-com",
- "windows",
+ "windows 0.61.3",
 ]
 
 [[package]]
@@ -3416,7 +3508,7 @@ dependencies = [
  "url",
  "webkit2gtk",
  "webview2-com",
- "windows",
+ "windows 0.61.3",
  "wry",
 ]
 
@@ -3476,6 +3568,15 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "5fed54709c5b3a53d09bb1c113ea4f5ceafd1e772ddcb0030a82e1d56c087b08"
 dependencies = [
  "new_debug_unreachable",
+]
+
+[[package]]
+name = "termcolor"
+version = "1.4.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "06794f8f6c5c898b3275aebefa6b8a1cb24cd2c6c79397ab15774837a0bc5755"
+dependencies = [
+ "winapi-util",
 ]
 
 [[package]]
@@ -3576,12 +3677,12 @@ checksum = "1f3ccbac311fea05f86f61904b462b55fb3df8837a366dfc601a0161d0532f20"
 [[package]]
 name = "titan-autotune"
 version = "0.1.0"
-source = "git+https://github.com/ai4waifu/titan.rs.git?branch=dev#62ff0546052ca5be5dbd49b4d213ba773362697b"
+source = "git+https://github.com/ai4waifu/titan.rs.git?branch=dev#0303040943be56b2e434a258c700b7f36847f831"
 
 [[package]]
 name = "titan-backend-cpu"
 version = "0.1.0"
-source = "git+https://github.com/ai4waifu/titan.rs.git?branch=dev#62ff0546052ca5be5dbd49b4d213ba773362697b"
+source = "git+https://github.com/ai4waifu/titan.rs.git?branch=dev#0303040943be56b2e434a258c700b7f36847f831"
 dependencies = [
  "titan-hal",
  "titan-kernel",
@@ -3591,7 +3692,7 @@ dependencies = [
 [[package]]
 name = "titan-backend-cuda"
 version = "0.1.0"
-source = "git+https://github.com/ai4waifu/titan.rs.git?branch=dev#62ff0546052ca5be5dbd49b4d213ba773362697b"
+source = "git+https://github.com/ai4waifu/titan.rs.git?branch=dev#0303040943be56b2e434a258c700b7f36847f831"
 dependencies = [
  "libloading 0.8.9",
  "titan-hal",
@@ -3602,8 +3703,10 @@ dependencies = [
 [[package]]
 name = "titan-graph"
 version = "0.1.0"
-source = "git+https://github.com/ai4waifu/titan.rs.git?branch=dev#62ff0546052ca5be5dbd49b4d213ba773362697b"
+source = "git+https://github.com/ai4waifu/titan.rs.git?branch=dev#0303040943be56b2e434a258c700b7f36847f831"
 dependencies = [
+ "serde",
+ "serde_json",
  "titan-tensor",
  "titan-types",
 ]
@@ -3611,7 +3714,7 @@ dependencies = [
 [[package]]
 name = "titan-hal"
 version = "0.1.0"
-source = "git+https://github.com/ai4waifu/titan.rs.git?branch=dev#62ff0546052ca5be5dbd49b4d213ba773362697b"
+source = "git+https://github.com/ai4waifu/titan.rs.git?branch=dev#0303040943be56b2e434a258c700b7f36847f831"
 dependencies = [
  "libloading 0.8.9",
  "titan-types",
@@ -3620,7 +3723,7 @@ dependencies = [
 [[package]]
 name = "titan-kernel"
 version = "0.1.0"
-source = "git+https://github.com/ai4waifu/titan.rs.git?branch=dev#62ff0546052ca5be5dbd49b4d213ba773362697b"
+source = "git+https://github.com/ai4waifu/titan.rs.git?branch=dev#0303040943be56b2e434a258c700b7f36847f831"
 dependencies = [
  "titan-hal",
  "titan-types",
@@ -3629,12 +3732,12 @@ dependencies = [
 [[package]]
 name = "titan-profiler"
 version = "0.1.0"
-source = "git+https://github.com/ai4waifu/titan.rs.git?branch=dev#62ff0546052ca5be5dbd49b4d213ba773362697b"
+source = "git+https://github.com/ai4waifu/titan.rs.git?branch=dev#0303040943be56b2e434a258c700b7f36847f831"
 
 [[package]]
 name = "titan-runtime"
 version = "0.1.0"
-source = "git+https://github.com/ai4waifu/titan.rs.git?branch=dev#62ff0546052ca5be5dbd49b4d213ba773362697b"
+source = "git+https://github.com/ai4waifu/titan.rs.git?branch=dev#0303040943be56b2e434a258c700b7f36847f831"
 dependencies = [
  "titan-autotune",
  "titan-backend-cpu",
@@ -3651,7 +3754,7 @@ dependencies = [
 [[package]]
 name = "titan-schema"
 version = "0.1.0"
-source = "git+https://github.com/ai4waifu/titan.rs.git?branch=dev#62ff0546052ca5be5dbd49b4d213ba773362697b"
+source = "git+https://github.com/ai4waifu/titan.rs.git?branch=dev#0303040943be56b2e434a258c700b7f36847f831"
 dependencies = [
  "titan-kernel",
  "titan-types",
@@ -3660,7 +3763,7 @@ dependencies = [
 [[package]]
 name = "titan-tensor"
 version = "0.1.0"
-source = "git+https://github.com/ai4waifu/titan.rs.git?branch=dev#62ff0546052ca5be5dbd49b4d213ba773362697b"
+source = "git+https://github.com/ai4waifu/titan.rs.git?branch=dev#0303040943be56b2e434a258c700b7f36847f831"
 dependencies = [
  "titan-hal",
  "titan-types",
@@ -3669,7 +3772,10 @@ dependencies = [
 [[package]]
 name = "titan-types"
 version = "0.1.0"
-source = "git+https://github.com/ai4waifu/titan.rs.git?branch=dev#62ff0546052ca5be5dbd49b4d213ba773362697b"
+source = "git+https://github.com/ai4waifu/titan.rs.git?branch=dev#0303040943be56b2e434a258c700b7f36847f831"
+dependencies = [
+ "serde",
+]
 
 [[package]]
 name = "tokio"
@@ -3923,6 +4029,103 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "b6f5e870be6c3b371b77fe0ee0bafb859fa4964b4404c27de1d380043c4dda20"
 
 [[package]]
+name = "ucf"
+version = "0.0.0"
+source = "git+https://github.com/muse-gpt/ucf.rs.git?branch=dev#d4d7b1eafdf606c6ded14e32a4c1032e357d2236"
+dependencies = [
+ "ucf-capability",
+ "ucf-ir",
+ "ucf-optimize",
+ "ucf-runtime",
+ "ucf-scheduler",
+ "ucf-types",
+]
+
+[[package]]
+name = "ucf-backend-cuda"
+version = "0.0.0"
+source = "git+https://github.com/muse-gpt/ucf.rs.git?branch=dev#d4d7b1eafdf606c6ded14e32a4c1032e357d2236"
+dependencies = [
+ "libloading 0.8.9",
+ "ucf-capability",
+ "ucf-emitter",
+ "ucf-ir",
+ "ucf-scheduler",
+ "ucf-types",
+]
+
+[[package]]
+name = "ucf-capability"
+version = "0.0.0"
+source = "git+https://github.com/muse-gpt/ucf.rs.git?branch=dev#d4d7b1eafdf606c6ded14e32a4c1032e357d2236"
+dependencies = [
+ "serde",
+]
+
+[[package]]
+name = "ucf-emitter"
+version = "0.0.0"
+source = "git+https://github.com/muse-gpt/ucf.rs.git?branch=dev#d4d7b1eafdf606c6ded14e32a4c1032e357d2236"
+dependencies = [
+ "libloading 0.8.9",
+ "naga",
+ "ucf-types",
+ "windows 0.58.0",
+]
+
+[[package]]
+name = "ucf-ir"
+version = "0.0.0"
+source = "git+https://github.com/muse-gpt/ucf.rs.git?branch=dev#d4d7b1eafdf606c6ded14e32a4c1032e357d2236"
+dependencies = [
+ "serde",
+ "serde_json",
+ "thiserror 1.0.69",
+ "ucf-types",
+]
+
+[[package]]
+name = "ucf-optimize"
+version = "0.0.0"
+source = "git+https://github.com/muse-gpt/ucf.rs.git?branch=dev#d4d7b1eafdf606c6ded14e32a4c1032e357d2236"
+dependencies = [
+ "serde",
+ "ucf-ir",
+ "ucf-types",
+]
+
+[[package]]
+name = "ucf-runtime"
+version = "0.0.0"
+source = "git+https://github.com/muse-gpt/ucf.rs.git?branch=dev#d4d7b1eafdf606c6ded14e32a4c1032e357d2236"
+dependencies = [
+ "ucf-capability",
+ "ucf-ir",
+ "ucf-optimize",
+ "ucf-scheduler",
+]
+
+[[package]]
+name = "ucf-scheduler"
+version = "0.0.0"
+source = "git+https://github.com/muse-gpt/ucf.rs.git?branch=dev#d4d7b1eafdf606c6ded14e32a4c1032e357d2236"
+dependencies = [
+ "serde",
+ "thiserror 1.0.69",
+ "ucf-capability",
+ "ucf-ir",
+ "ucf-optimize",
+]
+
+[[package]]
+name = "ucf-types"
+version = "0.0.0"
+source = "git+https://github.com/muse-gpt/ucf.rs.git?branch=dev#d4d7b1eafdf606c6ded14e32a4c1032e357d2236"
+dependencies = [
+ "serde",
+]
+
+[[package]]
 name = "unic-char-property"
 version = "0.9.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -3974,6 +4177,18 @@ name = "unicode-segmentation"
 version = "1.13.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "c6f5d3c3b1bf09027a88a6bc961fc00497d651009560b5463668dc81b0fa87a8"
+
+[[package]]
+name = "unicode-width"
+version = "0.1.14"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "7dd6e30e90baa6f72411720665d41d89b9a3d039dc45b8faea1ddd07f617f6af"
+
+[[package]]
+name = "unicode-xid"
+version = "0.2.6"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "ebc1c04c71510c7f702b52b7c350734c9ff1295c464a03335b00bb84fc54f853"
 
 [[package]]
 name = "url"
@@ -4226,10 +4441,10 @@ checksum = "7130243a7a5b33c54a444e54842e6a9e133de08b5ad7b5861cd8ed9a6a5bc96a"
 dependencies = [
  "webview2-com-macros",
  "webview2-com-sys",
- "windows",
+ "windows 0.61.3",
  "windows-core 0.61.2",
- "windows-implement",
- "windows-interface",
+ "windows-implement 0.60.2",
+ "windows-interface 0.59.3",
 ]
 
 [[package]]
@@ -4250,7 +4465,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "381336cfffd772377d291702245447a5251a2ffa5bad679c99e61bc48bacbf9c"
 dependencies = [
  "thiserror 2.0.20",
- "windows",
+ "windows 0.61.3",
  "windows-core 0.61.2",
 ]
 
@@ -4276,7 +4491,7 @@ version = "0.1.11"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "c2a7b1c03c876122aa43f3020e6c3c3ee5c05081c9a00739faf7503aeba10d22"
 dependencies = [
- "windows-sys 0.61.2",
+ "windows-sys 0.59.0",
 ]
 
 [[package]]
@@ -4298,6 +4513,16 @@ dependencies = [
  "raw-window-handle",
  "windows-sys 0.59.0",
  "windows-version",
+]
+
+[[package]]
+name = "windows"
+version = "0.58.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "dd04d41d93c4992d421894c18c8b43496aa748dd4c081bac0dc93eb0489272b6"
+dependencies = [
+ "windows-core 0.58.0",
+ "windows-targets 0.52.6",
 ]
 
 [[package]]
@@ -4324,12 +4549,25 @@ dependencies = [
 
 [[package]]
 name = "windows-core"
+version = "0.58.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "6ba6d44ec8c2591c134257ce647b7ea6b20335bf6379a27dac5f1641fcf59f99"
+dependencies = [
+ "windows-implement 0.58.0",
+ "windows-interface 0.58.0",
+ "windows-result 0.2.0",
+ "windows-strings 0.1.0",
+ "windows-targets 0.52.6",
+]
+
+[[package]]
+name = "windows-core"
 version = "0.61.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "c0fdd3ddb90610c7638aa2b3a3ab2904fb9e5cdbecc643ddb3647212781c4ae3"
 dependencies = [
- "windows-implement",
- "windows-interface",
+ "windows-implement 0.60.2",
+ "windows-interface 0.59.3",
  "windows-link 0.1.3",
  "windows-result 0.3.4",
  "windows-strings 0.4.2",
@@ -4341,8 +4579,8 @@ version = "0.62.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "b8e83a14d34d0623b51dce9581199302a221863196a1dde71a7663a4c2be9deb"
 dependencies = [
- "windows-implement",
- "windows-interface",
+ "windows-implement 0.60.2",
+ "windows-interface 0.59.3",
  "windows-link 0.2.1",
  "windows-result 0.4.1",
  "windows-strings 0.5.1",
@@ -4361,9 +4599,31 @@ dependencies = [
 
 [[package]]
 name = "windows-implement"
+version = "0.58.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "2bbd5b46c938e506ecbce286b6628a02171d56153ba733b6c741fc627ec9579b"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn 2.0.119",
+]
+
+[[package]]
+name = "windows-implement"
 version = "0.60.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "053e2e040ab57b9dc951b72c264860db7eb3b0200ba345b4e4c3b14f67855ddf"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn 2.0.119",
+]
+
+[[package]]
+name = "windows-interface"
+version = "0.58.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "053c4c462dc91d3b1504c6fe5a726dd15e216ba718e84a0e46a88fbe5ded3515"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -4405,6 +4665,15 @@ dependencies = [
 
 [[package]]
 name = "windows-result"
+version = "0.2.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "1d1043d8214f791817bab27572aaa8af63732e11bf84aa21a45a78d6c317ae0e"
+dependencies = [
+ "windows-targets 0.52.6",
+]
+
+[[package]]
+name = "windows-result"
 version = "0.3.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "56f42bd332cc6c8eac5af113fc0c1fd6a8fd2aa08a0119358686e5160d0586c6"
@@ -4419,6 +4688,16 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "7781fa89eaf60850ac3d2da7af8e5242a5ea78d1a11c49bf2910bb5a73853eb5"
 dependencies = [
  "windows-link 0.2.1",
+]
+
+[[package]]
+name = "windows-strings"
+version = "0.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "4cd9b125c486025df0eabcb585e62173c6c9eddcec5d117d3b6e8c30e2ee4d10"
+dependencies = [
+ "windows-result 0.2.0",
+ "windows-targets 0.52.6",
 ]
 
 [[package]]
@@ -4689,7 +4968,7 @@ dependencies = [
  "webkit2gtk",
  "webkit2gtk-sys",
  "webview2-com",
- "windows",
+ "windows 0.61.3",
  "windows-core 0.61.2",
  "windows-version",
  "x11-dl",

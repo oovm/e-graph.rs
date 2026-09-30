@@ -30,6 +30,11 @@ titan-hal = { git = "https://github.com/ai4waifu/titan.rs.git", branch = "dev" }
 titan-runtime = { git = "https://github.com/ai4waifu/titan.rs.git", branch = "dev" }
 titan-tensor = { git = "https://github.com/ai4waifu/titan.rs.git", branch = "dev" }
 titan-types = { git = "https://github.com/ai4waifu/titan.rs.git", branch = "dev" }
+ucf = { git = "https://github.com/muse-gpt/ucf.rs.git", branch = "dev", default-features = false }
+ucf-backend-cuda = { git = "https://github.com/muse-gpt/ucf.rs.git", branch = "dev" }
+ucf-ir = { git = "https://github.com/muse-gpt/ucf.rs.git", branch = "dev" }
+ucf-scheduler = { git = "https://github.com/muse-gpt/ucf.rs.git", branch = "dev" }
+ucf-types = { git = "https://github.com/muse-gpt/ucf.rs.git", branch = "dev" }
 
 [profile.release]
 lto = true

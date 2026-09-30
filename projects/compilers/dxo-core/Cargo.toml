@@ -24,6 +24,12 @@ titan-runtime = { workspace = true }
 titan-tensor = { workspace = true }
 titan-types = { workspace = true }
 titan-hal = { workspace = true }
+ucf = { workspace = true, optional = true }
+ucf-backend-cuda = { workspace = true, optional = true }
+ucf-ir = { workspace = true, optional = true }
+ucf-scheduler = { workspace = true, optional = true }
+ucf-types = { workspace = true, optional = true }
 
 [features]
 default = []
+ucf = ["dep:ucf", "dep:ucf-backend-cuda", "dep:ucf-ir", "dep:ucf-scheduler", "dep:ucf-types"]

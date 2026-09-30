@@ -7,6 +7,8 @@ mod autograd;
 mod broadcast;
 mod conv;
 mod cuda;
+#[cfg(feature = "ucf")]
+mod ucf_exec;
 mod diagnostic;
 mod dtype;
 mod engine;
@@ -25,6 +27,10 @@ pub use cuda::{
     capability_fingerprint as cuda_capability_fingerprint, host_transfer_count, is_available as cuda_available,
     reset_host_transfer_count,
 };
+#[cfg(feature = "ucf")]
+pub use ucf_exec::gemm_handles as ucf_gemm_handles;
+#[cfg(feature = "ucf")]
+pub use cuda::{download_f32 as cuda_download_f32, upload_f32 as cuda_upload_f32};
 pub use diagnostic::{Diagnostic, DiagnosticValue, Severity, from_hal_error, from_titan_error, titan_kind_to_code};
 pub use dtype::DType;
 pub use engine::{backend_label, cpu_session, probe_event_dep, probe_event_dep_cuda};
