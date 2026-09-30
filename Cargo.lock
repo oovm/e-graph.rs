@@ -654,7 +654,7 @@ dependencies = [
  "libc",
  "option-ext",
  "redox_users",
- "windows-sys 0.59.0",
+ "windows-sys 0.61.2",
 ]
 
 [[package]]
@@ -780,6 +780,7 @@ dependencies = [
  "ucf",
  "ucf-backend-cuda",
  "ucf-ir",
+ "ucf-runtime",
  "ucf-scheduler",
  "ucf-types",
 ]
@@ -4031,7 +4032,7 @@ checksum = "b6f5e870be6c3b371b77fe0ee0bafb859fa4964b4404c27de1d380043c4dda20"
 [[package]]
 name = "ucf"
 version = "0.0.0"
-source = "git+https://github.com/muse-gpt/ucf.rs.git?branch=dev#d4d7b1eafdf606c6ded14e32a4c1032e357d2236"
+source = "git+https://github.com/muse-gpt/ucf.rs.git?branch=dev#0b5cdc7e6b3fec3e100685d85d9bb2c4a94c9683"
 dependencies = [
  "ucf-capability",
  "ucf-ir",
@@ -4044,7 +4045,7 @@ dependencies = [
 [[package]]
 name = "ucf-backend-cuda"
 version = "0.0.0"
-source = "git+https://github.com/muse-gpt/ucf.rs.git?branch=dev#d4d7b1eafdf606c6ded14e32a4c1032e357d2236"
+source = "git+https://github.com/muse-gpt/ucf.rs.git?branch=dev#0b5cdc7e6b3fec3e100685d85d9bb2c4a94c9683"
 dependencies = [
  "libloading 0.8.9",
  "ucf-capability",
@@ -4057,7 +4058,7 @@ dependencies = [
 [[package]]
 name = "ucf-capability"
 version = "0.0.0"
-source = "git+https://github.com/muse-gpt/ucf.rs.git?branch=dev#d4d7b1eafdf606c6ded14e32a4c1032e357d2236"
+source = "git+https://github.com/muse-gpt/ucf.rs.git?branch=dev#0b5cdc7e6b3fec3e100685d85d9bb2c4a94c9683"
 dependencies = [
  "serde",
 ]
@@ -4065,7 +4066,7 @@ dependencies = [
 [[package]]
 name = "ucf-emitter"
 version = "0.0.0"
-source = "git+https://github.com/muse-gpt/ucf.rs.git?branch=dev#d4d7b1eafdf606c6ded14e32a4c1032e357d2236"
+source = "git+https://github.com/muse-gpt/ucf.rs.git?branch=dev#0b5cdc7e6b3fec3e100685d85d9bb2c4a94c9683"
 dependencies = [
  "libloading 0.8.9",
  "naga",
@@ -4076,7 +4077,7 @@ dependencies = [
 [[package]]
 name = "ucf-ir"
 version = "0.0.0"
-source = "git+https://github.com/muse-gpt/ucf.rs.git?branch=dev#d4d7b1eafdf606c6ded14e32a4c1032e357d2236"
+source = "git+https://github.com/muse-gpt/ucf.rs.git?branch=dev#0b5cdc7e6b3fec3e100685d85d9bb2c4a94c9683"
 dependencies = [
  "serde",
  "serde_json",
@@ -4087,7 +4088,7 @@ dependencies = [
 [[package]]
 name = "ucf-optimize"
 version = "0.0.0"
-source = "git+https://github.com/muse-gpt/ucf.rs.git?branch=dev#d4d7b1eafdf606c6ded14e32a4c1032e357d2236"
+source = "git+https://github.com/muse-gpt/ucf.rs.git?branch=dev#0b5cdc7e6b3fec3e100685d85d9bb2c4a94c9683"
 dependencies = [
  "serde",
  "ucf-ir",
@@ -4097,7 +4098,7 @@ dependencies = [
 [[package]]
 name = "ucf-runtime"
 version = "0.0.0"
-source = "git+https://github.com/muse-gpt/ucf.rs.git?branch=dev#d4d7b1eafdf606c6ded14e32a4c1032e357d2236"
+source = "git+https://github.com/muse-gpt/ucf.rs.git?branch=dev#0b5cdc7e6b3fec3e100685d85d9bb2c4a94c9683"
 dependencies = [
  "ucf-capability",
  "ucf-ir",
@@ -4108,7 +4109,7 @@ dependencies = [
 [[package]]
 name = "ucf-scheduler"
 version = "0.0.0"
-source = "git+https://github.com/muse-gpt/ucf.rs.git?branch=dev#d4d7b1eafdf606c6ded14e32a4c1032e357d2236"
+source = "git+https://github.com/muse-gpt/ucf.rs.git?branch=dev#0b5cdc7e6b3fec3e100685d85d9bb2c4a94c9683"
 dependencies = [
  "serde",
  "thiserror 1.0.69",
@@ -4120,7 +4121,7 @@ dependencies = [
 [[package]]
 name = "ucf-types"
 version = "0.0.0"
-source = "git+https://github.com/muse-gpt/ucf.rs.git?branch=dev#d4d7b1eafdf606c6ded14e32a4c1032e357d2236"
+source = "git+https://github.com/muse-gpt/ucf.rs.git?branch=dev#0b5cdc7e6b3fec3e100685d85d9bb2c4a94c9683"
 dependencies = [
  "serde",
 ]
@@ -4491,7 +4492,7 @@ version = "0.1.11"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "c2a7b1c03c876122aa43f3020e6c3c3ee5c05081c9a00739faf7503aeba10d22"
 dependencies = [
- "windows-sys 0.59.0",
+ "windows-sys 0.61.2",
 ]
 
 [[package]]

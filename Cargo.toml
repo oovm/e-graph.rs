@@ -35,6 +35,7 @@ ucf-backend-cuda = { git = "https://github.com/muse-gpt/ucf.rs.git", branch = "d
 ucf-ir = { git = "https://github.com/muse-gpt/ucf.rs.git", branch = "dev" }
 ucf-scheduler = { git = "https://github.com/muse-gpt/ucf.rs.git", branch = "dev" }
 ucf-types = { git = "https://github.com/muse-gpt/ucf.rs.git", branch = "dev" }
+ucf-runtime = { git = "https://github.com/muse-gpt/ucf.rs.git", branch = "dev" }
 
 [profile.release]
 lto = true

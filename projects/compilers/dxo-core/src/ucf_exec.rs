@@ -14,26 +14,30 @@ use ucf_ir::{
     Access, DepEdge, DepKind, Domain, Graph, Objective, ParamValue, Priority, ResourceGraph,
     ResourceKind, ResourceNode, ShaderId, TaskGraph, TaskId, TaskKind, TaskNode,
 };
-use ucf_scheduler::{Backend, ExecutionBindings};
+use ucf_runtime::Runtime;
+use ucf_scheduler::ExecutionBindings;
 use ucf_types::ResourceId;
 
 use crate::cuda::cuda_state;
 use crate::tensor::TensorError;
 
-/// Process-wide UCF CUDA backend sharing Titan's primary context.
+/// Process-wide UCF runtime sharing Titan's primary context CUDA backend.
 struct UcfCudaState {
-    backend: Mutex<CudaBackend>,
+    runtime: Mutex<Runtime>,
 }
 
 static UCF_CUDA: OnceLock<Result<UcfCudaState, String>> = OnceLock::new();
+static LAST_EVENT_KINDS: Mutex<Vec<String>> = Mutex::new(Vec::new());
 
 fn ucf_backend() -> Result<&'static UcfCudaState, TensorError> {
     // Ensure Titan has retained the primary context first.
     let _ = cuda_state()?;
     let init = UCF_CUDA.get_or_init(|| {
+        let mut runtime = Runtime::new();
         let backend = CudaBackend::new_primary(0).map_err(|e| e.to_string())?;
+        runtime.register_backend(Box::new(backend));
         Ok(UcfCudaState {
-            backend: Mutex::new(backend),
+            runtime: Mutex::new(runtime),
         })
     });
     init.as_ref().map_err(|msg| {
@@ -50,6 +54,26 @@ fn ucf_backend() -> Result<&'static UcfCudaState, TensorError> {
             .with_operation("open"),
         )
     })
+}
+
+fn record_runtime_diagnostics(rt: &Runtime) {
+    let kinds = rt
+        .diagnostics()
+        .events()
+        .iter()
+        .map(|e| e.kind.clone())
+        .collect();
+    if let Ok(mut last) = LAST_EVENT_KINDS.lock() {
+        *last = kinds;
+    }
+}
+
+/// Stable UCF execution event kinds from the most recent [`gemm_handles`] call (inspect hook).
+pub fn last_execution_event_kinds() -> Vec<String> {
+    LAST_EVENT_KINDS
+        .lock()
+        .map(|v| v.clone())
+        .unwrap_or_default()
 }
 
 fn cuda_device_ptr(handle: &TensorHandle, role: &str) -> Result<(u64, u64), TensorError> {
@@ -182,22 +206,22 @@ pub fn gemm_handles(
 
     let graph = matmul_graph(m, n, k);
     let ucf = ucf_backend()?;
-    let mut backend = ucf
-        .backend
+    let mut runtime = ucf
+        .runtime
         .lock()
         .map_err(|_| TensorError::Device("UCF CUDA lock poisoned".into()))?;
-    backend
-        .bind_externals(&bindings)
-        .map_err(|e| TensorError::Device(format!("UCF bind: {e}")))?;
-    backend
+    runtime.clear_diagnostics();
+    runtime.set_bindings(bindings);
+    runtime
         .prepare(&graph)
         .map_err(|e| TensorError::Device(format!("UCF prepare: {e}")))?;
-    backend
+    runtime
         .run_prepared(&graph)
         .map_err(|e| TensorError::Device(format!("UCF run: {e}")))?;
-    backend
+    runtime
         .flush()
         .map_err(|e| TensorError::Device(format!("UCF flush: {e}")))?;
+    record_runtime_diagnostics(&runtime);
 
     Ok(out_handle)
 }

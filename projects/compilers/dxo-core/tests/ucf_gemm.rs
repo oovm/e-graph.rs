@@ -46,6 +46,11 @@ fn ucf_gemm_matches_cpu_without_extra_host_transfer() {
             return;
         }
     };
+    let kinds_first = dxo_core::ucf_last_execution_event_kinds();
+    assert!(
+        kinds_first.iter().any(|k| k == "module_cache_miss" || k == "module_compile"),
+        "expected module cache miss/compile diagnostics, got {kinds_first:?}"
+    );
     let out2 = match ucf_gemm_handles(&out, &b, 2, 2) {
         Ok(h) => h,
         Err(err) => {
@@ -53,6 +58,11 @@ fn ucf_gemm_matches_cpu_without_extra_host_transfer() {
             return;
         }
     };
+    let kinds_second = dxo_core::ucf_last_execution_event_kinds();
+    assert!(
+        kinds_second.iter().any(|k| k == "module_cache_hit"),
+        "expected module cache hit on repeat gemm, got {kinds_second:?}"
+    );
     assert_eq!(
         host_transfer_count(),
         after_upload,

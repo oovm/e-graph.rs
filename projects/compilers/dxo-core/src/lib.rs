@@ -28,7 +28,7 @@ pub use cuda::{
     reset_host_transfer_count,
 };
 #[cfg(feature = "ucf")]
-pub use ucf_exec::gemm_handles as ucf_gemm_handles;
+pub use ucf_exec::{gemm_handles as ucf_gemm_handles, last_execution_event_kinds as ucf_last_execution_event_kinds};
 #[cfg(feature = "ucf")]
 pub use cuda::{download_f32 as cuda_download_f32, upload_f32 as cuda_upload_f32};
 pub use diagnostic::{Diagnostic, DiagnosticValue, Severity, from_hal_error, from_titan_error, titan_kind_to_code};
